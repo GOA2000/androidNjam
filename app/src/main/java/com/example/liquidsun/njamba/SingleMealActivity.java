@@ -11,12 +11,12 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 
-public class SingleName extends ActionBarActivity {
+public class SingleMealActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_name);
+        setContentView(R.layout.activity_single_meal);
         Intent it = getIntent();
         String name = it.getStringExtra("name");
         double price = it.getDoubleExtra("price",0);

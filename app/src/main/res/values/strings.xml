@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Services_lab</string>
+    <string name="app_name">Njam.ba v1.0 Alfa</string>
 
     <!-- hints -->
     <string name="hint_email">Your email</string>
@@ -11,8 +11,8 @@
 
 
     <!-- keys -->
-    <string name="key_user_email">bitcamp.benjamin.service.user_email</string>
-    <string name="key_user_password">bitcamp.benjamin.service.user_password</string>
+    <string name="key_user_email">com.example.liquidsun.njam.ba/service.user_email</string>
+    <string name="key_user_password">com.example.liquidsun.njam.ba/service.user_password</string>
 
     <!-- Toast -->
     <string name="toast_try_again">Something went wrong! Try again</string>
@@ -21,7 +21,7 @@
     <string name="title_activity_meals">MealsActivity</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_single_name">singleName</string>
+    <string name="title_activity_single_name">Meal information</string>
 
 
 </resources>

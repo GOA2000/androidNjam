@@ -24,7 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.liquidsun.njamba.service.ServiceRequest;
-import com.example.liquidsun.njamba.singletones.ListFeed;
+import com.example.liquidsun.njamba.singletones.ListMeals;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -50,9 +50,9 @@ public class MealsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_meal);
+        setContentView(R.layout.activity_meal_list);
 
-        ListFeed mealFeed = ListFeed.getInstance();
+        ListMeals mealFeed = ListMeals.getInstance();
         mealFeed.getFeed( getString(R.string.service_meals) );
         meals= mealFeed.getFeed();
 
@@ -141,12 +141,12 @@ public class MealsActivity extends ActionBarActivity {
             }
 
 
-            TextView couponName = (TextView) convertView.findViewById(R.id.textview_name);
-            couponName.setText(current.getName());
+            TextView mealName = (TextView) convertView.findViewById(R.id.textview_name);
+            mealName.setText(current.getName());
 
             TextView couponPrice = (TextView) convertView.findViewById(R.id.textview_price);
 
-            couponPrice.setText("" + current.getPrice());
+            couponPrice.setText("" + current.getPrice() +" KM");
             ImageView mealImage = (ImageView) convertView.findViewById(R.id.imageview_image);
             String img =getString(R.string.image_path) + current.getImgLocation();
             img = img.replaceAll("\\\\","/");
@@ -180,7 +180,7 @@ public class MealsActivity extends ActionBarActivity {
                         imgLocation = imgLocation.replaceAll("\\\\", "/");
 
 
-                        Intent goToMeal = new Intent(MealsActivity.this,SingleName.class);
+                        Intent goToMeal = new Intent(MealsActivity.this,SingleMealActivity.class);
                         goToMeal.putExtra("name", name);
                         goToMeal.putExtra("price", price);
                         goToMeal.putExtra("imgPath", imgLocation);
