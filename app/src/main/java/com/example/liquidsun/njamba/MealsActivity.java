@@ -54,6 +54,7 @@ public class MealsActivity extends ActionBarActivity {
 
         ListMeals mealFeed = ListMeals.getInstance();
         mealFeed.getFeed( getString(R.string.service_meals) );
+
         meals= mealFeed.getFeed();
 
 
