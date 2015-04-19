@@ -26,9 +26,9 @@ public class Splashscreen extends ActionBarActivity {
         ListRestaurants singletoneRestaurantList= ListRestaurants.getInstance();
         singletoneRestaurantList.getFeed("http://192.168.0.11:9000/api/restaurants");
         restaurants=singletoneRestaurantList.getFeed();
-       Log.d("WARNING",String.valueOf(restaurants.size()));
 
-      Intent intent = new Intent(this,MainActivity.class);
+
+      Intent intent = new Intent(this,RestaurantsActivity.class);
 
 
         startActivity(intent);

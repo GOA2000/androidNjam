@@ -1,9 +1,11 @@
 package com.example.liquidsun.njamba;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class SingleRestaurantActivity extends ActionBarActivity {
@@ -12,6 +14,23 @@ public class SingleRestaurantActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_restaurant);
+
+        Intent it = getIntent();
+        String nameRestaurant = it.getStringExtra("name");
+        String locationRestaurant = it.getStringExtra("location");
+
+
+
+        TextView name = (TextView)       findViewById(R.id.restaurant_single_name);
+        TextView   location= (TextView)  findViewById(R.id.restaurant_single_location);
+       // ImageView listImage = (ImageView) findViewById(R.id.image_profile_picture);
+
+        name.setText(nameRestaurant);
+        location.setText(locationRestaurant);
+
+
+
+
     }
 
 
