@@ -68,14 +68,14 @@ public class MealsActivity extends ActionBarActivity {
                 Meal clicked = meals.get(position);
                 int mealId = clicked.getId();
                 String url = getString(R.string.service_single_meal);
-                JSONObject clickedCoupon = new JSONObject();
+                JSONObject clickedMeal = new JSONObject();
                 try {
-                    clickedCoupon.put("id", Integer.toString(mealId));
+                    clickedMeal.put("id", Integer.toString(mealId));
                     Log.d("TAG", "JSON ID " +id);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                String json = clickedCoupon.toString();
+                String json = clickedMeal.toString();
                 Log.d("TAG", json);
                 ServiceRequest.post(url, json, getMealsImg());
             }
@@ -145,9 +145,9 @@ public class MealsActivity extends ActionBarActivity {
             TextView mealName = (TextView) convertView.findViewById(R.id.textview_name);
             mealName.setText(current.getName());
 
-            TextView couponPrice = (TextView) convertView.findViewById(R.id.textview_price);
+            TextView mealPrice = (TextView) convertView.findViewById(R.id.textview_price);
 
-            couponPrice.setText("" + current.getPrice() +" KM");
+            mealPrice.setText("" + current.getPrice() + " KM");
             ImageView mealImage = (ImageView) convertView.findViewById(R.id.imageview_image);
             String img =getString(R.string.image_path) + current.getImgLocation();
             img = img.replaceAll("\\\\","/");
