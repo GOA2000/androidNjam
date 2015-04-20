@@ -24,7 +24,7 @@ public class Splashscreen extends ActionBarActivity {
         setContentView(R.layout.activity_splashscreen);
 
         ListRestaurants singletoneRestaurantList= ListRestaurants.getInstance();
-        singletoneRestaurantList.getFeed("http://192.168.0.11:9000/api/restaurants");
+        singletoneRestaurantList.getFeed("http://10.0.2.2:9000/api/restaurants");
         restaurants=singletoneRestaurantList.getFeed();
 
 
