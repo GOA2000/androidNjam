@@ -123,11 +123,11 @@ public class RestaurantsActivity extends ActionBarActivity {
             }
 
 
-            TextView restaurantName = (TextView) convertView.findViewById(R.id.restaurant_name);
+            TextView restaurantName = (TextView) convertView.findViewById(R.id.text_view_restaurant_name);
             restaurantName.setText(current.getName());
 
-            TextView restaurantLocation = (TextView) convertView.findViewById(R.id.restaurant_location);
-            restaurantLocation.setText(current.getLocation());
+            TextView restaurantCity = (TextView) convertView.findViewById(R.id.text_view_restaurant_city);
+            restaurantCity.setText(current.getLocation());
 
            // ImageView mealImage = (ImageView) convertView.findViewById(R.id.imageview_image);
           //  String img =getString(R.string.image_path) + current.getImgLocation();

@@ -10,6 +10,7 @@ public class Restaurant {
     private int mId;
     private String mName;
     private String  mLocation;
+    private double mMinOrder;
     private String mImgLocation;
 
     public Restaurant(int id, String name) {
