@@ -67,7 +67,7 @@ public class RestaurantsActivity extends ActionBarActivity {
                 String json = clickedRestaurant.toString();
                 Log.d("TAG", json);
                 ServiceRequest.post(url, json, getRestaurant());
-             //   getRestaurant();
+
             }
         });
 

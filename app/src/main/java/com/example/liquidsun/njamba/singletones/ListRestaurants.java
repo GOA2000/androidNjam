@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.liquidsun.njamba.Meal;
 import com.example.liquidsun.njamba.Restaurant;
+import com.example.liquidsun.njamba.Splashscreen;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -83,6 +84,9 @@ public class ListRestaurants {
 
 
                             Log.e("ArraySizeRestaurant", String.valueOf(mFeed.size()));
+
+
+
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

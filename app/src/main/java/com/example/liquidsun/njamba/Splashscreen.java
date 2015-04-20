@@ -1,6 +1,7 @@
 package com.example.liquidsun.njamba;
 
 import android.content.Intent;
+import android.media.MediaRouter;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,8 +9,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.liquidsun.njamba.service.ServiceRequest;
 import com.example.liquidsun.njamba.singletones.ListRestaurants;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,19 +30,35 @@ public class Splashscreen extends ActionBarActivity {
         setContentView(R.layout.activity_splashscreen);
 
         ListRestaurants singletoneRestaurantList= ListRestaurants.getInstance();
-        singletoneRestaurantList.getFeed("http://192.168.0.11:9000/api/restaurants");
+        singletoneRestaurantList.getFeed("http://10.0.2.2:9000/api/restaurants");
         restaurants=singletoneRestaurantList.getFeed();
 
+        ServiceRequest.post("http://10.0.2.2:9000","{}",toIntent());
 
-      Intent intent = new Intent(this,RestaurantsActivity.class);
-
-
-        startActivity(intent);
-        finish();
-          }
+    }
 
 
+    public Callback toIntent(){
 
+
+        return new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                setContentView(R.layout.activity_splashscreen);
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+
+                Intent intent = new Intent(Splashscreen.this, RestaurantsActivity.class);
+
+                startActivity(intent);
+
+                finish();
+            }
+        };
+
+       }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

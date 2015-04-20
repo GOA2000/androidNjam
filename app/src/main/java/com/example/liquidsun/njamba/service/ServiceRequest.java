@@ -19,6 +19,9 @@ public class ServiceRequest {
         request(url, json, callback, true);
     }
 
+
+
+
     private static void request(String url,
                                 String json,
                                 Callback callback,
@@ -45,6 +48,9 @@ public class ServiceRequest {
 
         Call call = client.newCall(request);
         call.enqueue(callback);
+
     }
+
+
 
 }
