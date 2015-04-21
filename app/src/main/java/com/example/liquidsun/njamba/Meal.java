@@ -9,6 +9,8 @@ public class Meal {
 
     private int mId;
     private String mName;
+    private String mRestaurant;
+    private String mCity;
     private double  mPrice;
     private String mImgLocation;
 
@@ -18,9 +20,11 @@ public class Meal {
        // mContent = content;
     }
 
-    public Meal(int id,String name, double price,String imgLocation) {
+    public Meal(int id,String name, String restaurant, String city, double price, String imgLocation) {
         mId = id;
         mName = name;
+        mRestaurant = restaurant;
+        mCity = city;
         mPrice =price;
         mImgLocation=imgLocation;
 
@@ -66,6 +70,15 @@ public class Meal {
     public void setImgLocation(String imgLocation) {
         mImgLocation = imgLocation;
     }
+
+    public String getRestaurantName() {
+        return mRestaurant;
+    }
+
+    public String getRestaurantCity() {
+        return mCity;
+    }
+
 }
 
 

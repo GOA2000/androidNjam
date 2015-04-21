@@ -54,6 +54,7 @@ public class MealsActivity extends ActionBarActivity {
 
         ListMeals mealFeed = ListMeals.getInstance();
         mealFeed.getFeed( getString(R.string.service_meals) );
+
         meals= mealFeed.getFeed();
 
 
@@ -67,14 +68,14 @@ public class MealsActivity extends ActionBarActivity {
                 Meal clicked = meals.get(position);
                 int mealId = clicked.getId();
                 String url = getString(R.string.service_single_meal);
-                JSONObject clickedCoupon = new JSONObject();
+                JSONObject clickedMeal = new JSONObject();
                 try {
-                    clickedCoupon.put("id", Integer.toString(mealId));
+                    clickedMeal.put("id", Integer.toString(mealId));
                     Log.d("TAG", "JSON ID " +id);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                String json = clickedCoupon.toString();
+                String json = clickedMeal.toString();
                 Log.d("TAG", json);
                 ServiceRequest.post(url, json, getMealsImg());
             }
@@ -137,17 +138,23 @@ public class MealsActivity extends ActionBarActivity {
             Meal current = getItem(position);
             if (convertView == null) {
                 convertView = MealsActivity.this.getLayoutInflater()
-                        .inflate(R.layout.meal_display_row, null);
+                        .inflate(R.layout.custom_meals_list_row, null);
             }
 
 
-            TextView mealName = (TextView) convertView.findViewById(R.id.textview_name);
+            TextView mealName = (TextView) convertView.findViewById(R.id.text_view_meal_name);
             mealName.setText(current.getName());
 
-            TextView couponPrice = (TextView) convertView.findViewById(R.id.textview_price);
+            TextView mealRestaurant = (TextView) convertView.findViewById(R.id.text_view_meal_restaurant_name);
+            mealRestaurant.setText(current.getRestaurantName());
 
-            couponPrice.setText("" + current.getPrice() +" KM");
-            ImageView mealImage = (ImageView) convertView.findViewById(R.id.imageview_image);
+            TextView mealRestaurantCity = (TextView) convertView.findViewById(R.id.text_view_meal_restaurant_city);
+            mealRestaurantCity.setText(current.getRestaurantCity());
+
+            TextView mealPrice = (TextView) convertView.findViewById(R.id.text_view_meal_price);
+
+            mealPrice.setText("" + current.getPrice());
+            ImageView mealImage = (ImageView) convertView.findViewById(R.id.image_view_meal);
             String img =getString(R.string.image_path) + current.getImgLocation();
             img = img.replaceAll("\\\\","/");
             Log.d("IMGTAG Image", img);

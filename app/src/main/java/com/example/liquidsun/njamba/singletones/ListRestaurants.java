@@ -3,6 +3,8 @@ package com.example.liquidsun.njamba.singletones;
 import android.util.Log;
 
 import com.example.liquidsun.njamba.Meal;
+import com.example.liquidsun.njamba.Restaurant;
+import com.example.liquidsun.njamba.Splashscreen;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -17,27 +19,27 @@ import java.util.ArrayList;
 /**
  * Created by Liquid Sun on 16/04/2015.
  */
-public class ListMeals {
-    private static ListMeals ourInstance = new ListMeals();
+public class ListRestaurants {
+    private static ListRestaurants ourInstance = new ListRestaurants();
 
-    public static ListMeals getInstance() {
+    public static ListRestaurants getInstance() {
         return ourInstance;
     }
 
-    private ArrayList<Meal> mFeed;
+    private ArrayList<Restaurant> mFeed;
 
-    private ListMeals() {
-        mFeed = new ArrayList<Meal>();
+    private ListRestaurants() {
+        mFeed = new ArrayList<Restaurant>();
     }
 
     public void getFeed(String url){
         com.example.liquidsun.njamba.service.ServiceRequest.get(url, parseResponse());
     }
 
-    public boolean  checkMealList(Meal currentMeal){
+    public boolean  checkRestaurantlList(Restaurant currentRestaurant){
 
-        for(Meal m :mFeed){
-            if(currentMeal.getId()==m.getId()){
+        for(Restaurant r :mFeed){
+            if(currentRestaurant.getId()==r.getId()){
                return false;
             }
 
@@ -47,7 +49,7 @@ public class ListMeals {
 
     }
 
-    public ArrayList<Meal> getFeed(){
+    public ArrayList<Restaurant> getFeed(){
         return mFeed;
     }
 
@@ -68,20 +70,23 @@ public class ListMeals {
                             JSONObject postObj = array.getJSONObject(i);
                             int id = postObj.getInt("id");
                             String name = postObj.getString("name");
-                            String restaurant = postObj.getString("restaurant");
-                            String city = postObj.getString("restaurantCity");
-                            double price = postObj.getDouble("price");
-                            String imgLocation = postObj.getString("image");
+                            String location = postObj.getString("location");
+                            //String imgLocation = postObj.getString("image");
 
-                            Meal currentMeal= new Meal(id,name, restaurant, city, price, imgLocation);
+                            Restaurant currentRestaurant= new Restaurant(id,name,location);
+                            if(true==checkRestaurantlList(currentRestaurant)){
+                             mFeed.add(currentRestaurant
 
-                             if(true==checkMealList(currentMeal)){
-                             mFeed.add(currentMeal);
+                             );
+
                              }
 
 
 
-                            Log.e("ArraySize", String.valueOf(mFeed.size()));
+                            Log.e("ArraySizeRestaurant", String.valueOf(mFeed.size()));
+
+
+
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
