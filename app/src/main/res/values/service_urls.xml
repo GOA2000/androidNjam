@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="service_restaurants">http://10.0.82.20:9000/api/restaurants</string>
+    <string name="service_restaurants">http://10.0.2.2:9000/api/restaurants</string>
     <string name="service_login">http://10.0.2.2:9000/api/login</string>
     <string name="service_meals">http://10.0.2.2:9000/api/meals</string>
     <string name="image_path">http://10.0.2.2:9000/assets/</string>
     <string name="service_single_meal">http://10.0.2.2:9000/api/meal</string>
     <string name="service_single_restaurant">http://10.0.2.2:9000/api/restaurant</string>
-    <string name="localHost">http://10.0.82.20:9000</string>
+    <string name="localHost">http://10.0.2.2:9000</string>
 </resources>

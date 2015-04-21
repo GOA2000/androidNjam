@@ -68,10 +68,12 @@ public class ListMeals {
                             JSONObject postObj = array.getJSONObject(i);
                             int id = postObj.getInt("id");
                             String name = postObj.getString("name");
-                              double price = postObj.getDouble("price");
+                            String restaurant = postObj.getString("restaurant");
+                            String city = postObj.getString("restaurantCity");
+                            double price = postObj.getDouble("price");
                             String imgLocation = postObj.getString("image");
 
-                            Meal currentMeal= new Meal(id,name, price,imgLocation);
+                            Meal currentMeal= new Meal(id,name, restaurant, city, price, imgLocation);
 
                              if(true==checkMealList(currentMeal)){
                              mFeed.add(currentMeal);

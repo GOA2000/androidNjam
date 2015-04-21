@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,6 +37,8 @@ public class RestaurantsActivity extends ActionBarActivity {
     private RestaurantAdapter mAdapter;
 
     static  ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +74,16 @@ public class RestaurantsActivity extends ActionBarActivity {
                 Log.d("TAG", json);
                 ServiceRequest.post(url, json, getRestaurant());
 
+            }
+        });
+
+        // Temporary Button
+        Button buttonGoToAllMeals = (Button) findViewById(R.id.button_go_to_all_meals);
+        buttonGoToAllMeals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToAllMeals = new Intent(RestaurantsActivity.this, MealsActivity.class);
+                startActivity(goToAllMeals);
             }
         });
 
