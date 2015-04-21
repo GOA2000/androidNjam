@@ -17,11 +17,17 @@
 
     <TextView android:text="@string/loading"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="40dp"
         android:gravity="center"
         />
 
-
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"/>
 </LinearLayout>

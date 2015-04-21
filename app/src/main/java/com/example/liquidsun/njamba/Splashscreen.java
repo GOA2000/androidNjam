@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 
 import com.example.liquidsun.njamba.service.ServiceRequest;
 import com.example.liquidsun.njamba.singletones.ListRestaurants;
@@ -23,11 +24,15 @@ import java.util.TimerTask;
 
 public class Splashscreen extends ActionBarActivity {
     static  ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
-
+    private ProgressBar spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
+
+
+        ProgressBar spinner;
+        spinner = (ProgressBar)findViewById(R.id.progressBar1);
 
         ListRestaurants singletoneRestaurantList= ListRestaurants.getInstance();
         singletoneRestaurantList.getFeed("http://10.0.2.2:9000/api/restaurants");
@@ -44,7 +49,12 @@ public class Splashscreen extends ActionBarActivity {
         return new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
-                setContentView(R.layout.activity_splashscreen);
+                Intent intent = new Intent(Splashscreen.this, ErrorLoading.class);
+
+                startActivity(intent);
+
+                finish();
+
             }
 
             @Override
