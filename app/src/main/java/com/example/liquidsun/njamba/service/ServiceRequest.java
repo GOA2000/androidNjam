@@ -53,7 +53,6 @@ public class ServiceRequest {
 
 
         Call call = client.newCall(request);
-
         call.enqueue(callback);
 
 

@@ -30,15 +30,15 @@ public class Splashscreen extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
 
-
         ProgressBar spinner;
         spinner = (ProgressBar)findViewById(R.id.progressBar1);
 
         ListRestaurants singletoneRestaurantList= ListRestaurants.getInstance();
-        singletoneRestaurantList.getFeed("http://10.0.2.2:9000/api/restaurants");
+        singletoneRestaurantList.getFeed(getText(R.string.service_restaurants).toString());
         restaurants=singletoneRestaurantList.getFeed();
+        ServiceRequest.post(getText(R.string.localHost).toString(),"{}",toIntent());
 
-        ServiceRequest.post("http://10.0.2.2:9000","{}",toIntent());
+
 
     }
 

@@ -44,7 +44,10 @@ public class RestaurantsActivity extends ActionBarActivity {
         ListRestaurants restaurantFeed= ListRestaurants.getInstance();
 
        restaurants =restaurantFeed.getFeed();
+        if(restaurants.isEmpty()){
 
+
+        }
 
 
         mRestaurantList = (ListView)findViewById(R.id.list_view_restaurant);
