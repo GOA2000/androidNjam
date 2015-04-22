@@ -53,7 +53,7 @@ public class MealsActivity extends ActionBarActivity {
         setContentView(R.layout.activity_meal_list);
 
         ListMeals mealFeed = ListMeals.getInstance();
-        mealFeed.getFeed( getString(R.string.service_meals) );
+        mealFeed.getFeed( getString(R.string.service_meals));
 
         meals= mealFeed.getFeed();
 

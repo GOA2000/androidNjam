@@ -111,6 +111,7 @@ public class RestaurantsActivity extends ActionBarActivity {
 
 
                         Intent goToRestaurant = new Intent(RestaurantsActivity.this,SingleRestaurantActivity.class);
+                        goToRestaurant.putExtra("id", id);
                         goToRestaurant.putExtra("name", name);
                         Log.d("WARNING",name);
                      //   goToRestaurant.putExtra("location", location);
