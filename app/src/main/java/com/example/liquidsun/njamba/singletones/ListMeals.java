@@ -24,7 +24,7 @@ public class ListMeals {
         return ourInstance;
     }
 
-    private ArrayList<Meal> mFeed;
+    public ArrayList<Meal> mFeed;
 
     private ListMeals() {
         mFeed = new ArrayList<Meal>();
