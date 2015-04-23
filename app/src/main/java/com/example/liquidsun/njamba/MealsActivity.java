@@ -188,6 +188,7 @@ public class MealsActivity extends ActionBarActivity {
 
 
                         Intent goToMeal = new Intent(MealsActivity.this,SingleMealActivity.class);
+                        goToMeal.putExtra("id", id);
                         goToMeal.putExtra("name", name);
                         goToMeal.putExtra("price", price);
                         goToMeal.putExtra("imgPath", imgLocation);

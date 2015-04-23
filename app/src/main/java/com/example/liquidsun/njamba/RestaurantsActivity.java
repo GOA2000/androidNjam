@@ -87,6 +87,15 @@ public class RestaurantsActivity extends ActionBarActivity {
             }
         });
 
+        Button buttonGoToCart = (Button) findViewById(R.id.button_go_to_cart);
+        buttonGoToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(RestaurantsActivity.this, CartActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
 

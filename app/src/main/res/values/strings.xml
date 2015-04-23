@@ -35,6 +35,10 @@
     <string name="error_advice">If you are unsuccessful the service might be down</string>
    <string name="error_reload">Retry</string>
     <string name="title_activity_error_loading">ErrorLoading</string>
+    <string name="title_activity_cart">CartActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_payment">PaymentActivity</string>
 
 
 
