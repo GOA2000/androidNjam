@@ -6,19 +6,21 @@ package com.example.liquidsun.njamba;
 public class Meal {
 
 
-
+    private int mRestaurantId;
     private int mId;
     private String mName;
     private double  mPrice;
     private String mImgLocation;
 
     public Meal(int id, String name) {
+
         mId = id;
         mName = name;
        // mContent = content;
     }
 
-    public Meal(int id,String name, double price,String imgLocation) {
+    public Meal(int restaurantId,int id,String name, double price,String imgLocation) {
+        mRestaurantId=restaurantId;
         mId = id;
         mName = name;
         mPrice =price;
@@ -41,6 +43,10 @@ public class Meal {
 
     public double getPrice() {
         return mPrice;
+    }
+
+    public int getRestaurantId() {
+        return mRestaurantId;
     }
 
     public void setPrice(double price) {

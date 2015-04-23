@@ -32,15 +32,15 @@ public class ListRestaurants {
         mFeed = new ArrayList<Restaurant>();
     }
 
-    public void getFeed(String url){
+    public void getFeed(String url) {
         com.example.liquidsun.njamba.service.ServiceRequest.get(url, parseResponse());
     }
 
-    public boolean  checkRestaurantlList(Restaurant currentRestaurant){
+    public boolean checkRestaurantlList(Restaurant currentRestaurant) {
 
-        for(Restaurant r :mFeed){
-            if(currentRestaurant.getId()==r.getId()){
-               return false;
+        for (Restaurant r : mFeed) {
+            if (currentRestaurant.getId() == r.getId()) {
+                return false;
             }
 
         }
@@ -49,11 +49,11 @@ public class ListRestaurants {
 
     }
 
-    public ArrayList<Restaurant> getFeed(){
+    public ArrayList<Restaurant> getFeed() {
         return mFeed;
     }
 
-    private Callback parseResponse(){
+    private Callback parseResponse() {
         return new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
@@ -63,35 +63,33 @@ public class ListRestaurants {
             @Override
             public void onResponse(Response response) throws IOException {
 
-                    try {
+                try {
 
-                        JSONArray array = new JSONArray(response.body().string());
-                        for (int i = 0; i < array.length(); i++) {
-                            JSONObject postObj = array.getJSONObject(i);
-                            int id = postObj.getInt("id");
-                            String name = postObj.getString("name");
-                            String location = postObj.getString("location");
-                            //String imgLocation = postObj.getString("image");
+                    JSONArray array = new JSONArray(response.body().string());
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject postObj = array.getJSONObject(i);
+                        int id = postObj.getInt("id");
+                        String name = postObj.getString("name");
+                        String location = postObj.getString("location");
+                        //String imgLocation = postObj.getString("image");
 
-                            Restaurant currentRestaurant= new Restaurant(id,name,location);
-                            if(true==checkRestaurantlList(currentRestaurant)){
-                             mFeed.add(currentRestaurant
+                        Restaurant currentRestaurant = new Restaurant(id, name, location);
+                        if (true == checkRestaurantlList(currentRestaurant)) {
+                            mFeed.add(currentRestaurant
 
-                             );
-
-                             }
-
-
-
-                            Log.e("ArraySizeRestaurant", String.valueOf(mFeed.size()));
-
-
+                            );
 
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+
+
+                        Log.e("ArraySizeRestaurant", String.valueOf(mFeed.size()));
+
+
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+            }
 
         };
     }

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.liquidsun.njamba.service.ServiceRequest;
+import com.example.liquidsun.njamba.singletones.ListMeals;
 import com.example.liquidsun.njamba.singletones.ListRestaurants;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
@@ -44,10 +45,6 @@ public class RestaurantsActivity extends ActionBarActivity {
         ListRestaurants restaurantFeed= ListRestaurants.getInstance();
 
        restaurants =restaurantFeed.getFeed();
-        if(restaurants.isEmpty()){
-
-
-        }
 
 
         mRestaurantList = (ListView)findViewById(R.id.list_view_restaurant);
@@ -59,7 +56,7 @@ public class RestaurantsActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Restaurant clicked = restaurants.get(position);
                 int restaurantId = clicked.getId();
-                String url = getString(R.string.service_single_restaurant);
+                String url = getString(R.string.restaurant_meals);
                 JSONObject clickedRestaurant = new JSONObject();
                 try {
                     clickedRestaurant.put("id", Integer.toString(restaurantId));
@@ -69,15 +66,21 @@ public class RestaurantsActivity extends ActionBarActivity {
                 }
                 String json = clickedRestaurant.toString();
                 Log.d("TAG", json);
-                ServiceRequest.post(url, json, getRestaurant());
+                ServiceRequest.post(url, json, ListMeals.getInstance().parseResponse());
 
+
+
+                Intent toMeals = new Intent(RestaurantsActivity.this,RestaurantMealsActivity.class);
+                toMeals.putExtra("restaurant_id",restaurantId);
+
+                startActivity(toMeals);
             }
         });
 
     }
 
 
-    private Callback getRestaurant(){
+    private Callback getRestaurantMeals(){
         return new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
@@ -101,7 +104,7 @@ public class RestaurantsActivity extends ActionBarActivity {
                         goToRestaurant.putExtra("name", name);
                         Log.d("WARNING",name);
                      //   goToRestaurant.putExtra("location", location);
-                        startActivity(goToRestaurant);
+                     //   startActivity(goToRestaurant);
                     }
                 } catch (JSONException e) {
                     makeToast(R.string.toast_try_again);

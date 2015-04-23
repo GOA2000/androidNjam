@@ -30,15 +30,30 @@ public class ListMeals {
         mFeed = new ArrayList<Meal>();
     }
 
-    public void getFeed(String url){
+
+    public void getFeed(String url) {
         com.example.liquidsun.njamba.service.ServiceRequest.get(url, parseResponse());
     }
 
-    public boolean  checkMealList(Meal currentMeal){
+    public ArrayList<Meal> mealsByRestaurant(int id) {
 
-        for(Meal m :mFeed){
-            if(currentMeal.getId()==m.getId()){
-               return false;
+        ArrayList<Meal> returnMeals = new ArrayList<>();
+
+        for (Meal m : mFeed) {
+            if (m.getRestaurantId() == id) {
+                returnMeals.add(m);
+            }
+        }
+        return returnMeals;
+
+    }
+
+
+    public boolean checkMealList(Meal currentMeal) {
+
+        for (Meal m : mFeed) {
+            if (currentMeal.getId() == m.getId() && currentMeal.getRestaurantId() == m.getRestaurantId()) {
+                return false;
             }
 
         }
@@ -47,11 +62,11 @@ public class ListMeals {
 
     }
 
-    public ArrayList<Meal> getFeed(){
+    public ArrayList<Meal> getFeed() {
         return mFeed;
     }
 
-    private Callback parseResponse(){
+    public Callback parseResponse() {
         return new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
@@ -61,30 +76,28 @@ public class ListMeals {
             @Override
             public void onResponse(Response response) throws IOException {
 
-                    try {
+                try {
 
-                        JSONArray array = new JSONArray(response.body().string());
-                        for (int i = 0; i < array.length(); i++) {
-                            JSONObject postObj = array.getJSONObject(i);
-                            int id = postObj.getInt("id");
-                            String name = postObj.getString("name");
-                              double price = postObj.getDouble("price");
-                            String imgLocation = postObj.getString("image");
+                    JSONArray array = new JSONArray(response.body().string());
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject postObj = array.getJSONObject(i);
+                        int restaurantId = postObj.getInt("restaurant_id");
+                        int id = postObj.getInt("id");
+                        String name = postObj.getString("name");
+                        double price = postObj.getDouble("price");
+                        String imgLocation = postObj.getString("image");
 
-                            Meal currentMeal= new Meal(id,name, price,imgLocation);
+                        Meal currentMeal = new Meal(restaurantId, id, name, price, imgLocation);
 
-                             if(true==checkMealList(currentMeal)){
-                             mFeed.add(currentMeal);
-                             }
-
-
-
-                            Log.e("ArraySize", String.valueOf(mFeed.size()));
+                        if (true == checkMealList(currentMeal)) {
+                            mFeed.add(currentMeal);
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        Log.e("ArraySize", String.valueOf(mFeed.size()));
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+            }
 
         };
     }
