@@ -1,4 +1,5 @@
 package com.example.liquidsun.njamba.singletones;
+
 import android.util.Base64;
 
 import org.json.JSONException;
@@ -21,18 +22,18 @@ public class UserData {
         mId = -1;
     }
 
-    public String getBaseAuth(){
-        return "Basic "+ Base64.encodeToString(
+    public String getBaseAuth() {
+        return "Basic " + Base64.encodeToString(
                 String.format("%s:%s", mEmail, mPassword)
                         .getBytes(),
                 Base64.NO_WRAP);
     }
 
-    public boolean isAuthenticated(){
+    public boolean isAuthenticated() {
         return mId > 0;
     }
 
-    public String toJson(){
+    public String toJson() {
         JSONObject obj = new JSONObject();
 
         try {

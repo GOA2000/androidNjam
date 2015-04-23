@@ -19,12 +19,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.liquidsun.njamba.service.ServiceRequest;
+import com.example.liquidsun.njamba.singletones.ListMeals;
 import com.example.liquidsun.njamba.singletones.ListRestaurants;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,24 +35,23 @@ import java.util.ArrayList;
 
 
 public class RestaurantsActivity extends ActionBarActivity {
+    private int RestaurantId;
     private ListView mRestaurantList;
     private RestaurantAdapter mAdapter;
+    private ListMeals restaurantMealList;
 
     static  ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
+           super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_list);
 
         ListRestaurants restaurantFeed= ListRestaurants.getInstance();
-
+        restaurantMealList = ListMeals.getInstance();
        restaurants =restaurantFeed.getFeed();
-        if(restaurants.isEmpty()){
-
-
-        }
 
 
         mRestaurantList = (ListView)findViewById(R.id.list_view_restaurant);
@@ -61,8 +62,8 @@ public class RestaurantsActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Restaurant clicked = restaurants.get(position);
-                int restaurantId = clicked.getId();
-                String url = getString(R.string.service_single_restaurant);
+              int restaurantId = clicked.getId();
+                String url = getString(R.string.service_meals_for_restaurant);
                 JSONObject clickedRestaurant = new JSONObject();
                 try {
                     clickedRestaurant.put("id", Integer.toString(restaurantId));
@@ -72,7 +73,12 @@ public class RestaurantsActivity extends ActionBarActivity {
                 }
                 String json = clickedRestaurant.toString();
                 Log.d("TAG", json);
-                ServiceRequest.post(url, json, getRestaurant());
+                ServiceRequest.post(url, json, getRestaurantMeals());
+
+
+
+
+
 
             }
         });
@@ -90,7 +96,7 @@ public class RestaurantsActivity extends ActionBarActivity {
     }
 
 
-    private Callback getRestaurant(){
+    private Callback getRestaurantMeals(){
         return new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
@@ -100,27 +106,34 @@ public class RestaurantsActivity extends ActionBarActivity {
 
             @Override
             public void onResponse(Response response) throws IOException {
-                String responseJson = response.body().string();
+                int restaurantId=-1;
                 try {
-                    JSONObject restaurant = new JSONObject(responseJson);
-                    int id = restaurant.getInt("id");
-                    if(id > 0){
-                        String name = restaurant.getString("name");
-                      //  String location = restaurant.getString("location");
-                        String imgLocation;
 
+                    JSONArray array = new JSONArray(response.body().string());
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject postObj = array.getJSONObject(i);
+                        restaurantId = Integer.parseInt(postObj.getString("restaurant_id"));
+                        int id = postObj.getInt("id");
+                        String name = postObj.getString("name");
+                        String restaurantName = postObj.getString("restaurant");
+                        double price = postObj.getDouble("price");
+                        String imgLocation = postObj.getString("image");
+                        String city = postObj.getString("restaurantCity");
 
-                        Intent goToRestaurant = new Intent(RestaurantsActivity.this,SingleRestaurantActivity.class);
-                        goToRestaurant.putExtra("id", id);
-                        goToRestaurant.putExtra("name", name);
-                        Log.d("WARNING",name);
-                     //   goToRestaurant.putExtra("location", location);
-                        startActivity(goToRestaurant);
+                          Meal currentMeal= new Meal(restaurantId,id, name, restaurantName,city,price,imgLocation);
+
+                        if (true == restaurantMealList.checkMealList(currentMeal)) {
+                            restaurantMealList.mFeed.add(currentMeal);
+                        }
+                        Log.e("ArraySize", String.valueOf(restaurantMealList.mFeed.size()));
+
                     }
                 } catch (JSONException e) {
-                    makeToast(R.string.toast_try_again);
                     e.printStackTrace();
                 }
+                Intent toMeals = new Intent(RestaurantsActivity.this,RestaurantMealsActivity.class);
+                toMeals.putExtra("restaurant_id",restaurantId);
+                startActivity(toMeals);
             }
         };
     }
