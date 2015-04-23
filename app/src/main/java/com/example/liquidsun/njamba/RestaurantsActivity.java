@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,6 +41,8 @@ public class RestaurantsActivity extends ActionBarActivity {
     private ListMeals restaurantMealList;
 
     static  ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -60,7 +63,7 @@ public class RestaurantsActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Restaurant clicked = restaurants.get(position);
               int restaurantId = clicked.getId();
-                String url = getString(R.string.restaurant_meals);
+                String url = getString(R.string.service_meals_for_restaurant);
                 JSONObject clickedRestaurant = new JSONObject();
                 try {
                     clickedRestaurant.put("id", Integer.toString(restaurantId));
@@ -77,6 +80,16 @@ public class RestaurantsActivity extends ActionBarActivity {
 
 
 
+            }
+        });
+
+        // Temporary Button
+        Button buttonGoToAllMeals = (Button) findViewById(R.id.button_go_to_all_meals);
+        buttonGoToAllMeals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToAllMeals = new Intent(RestaurantsActivity.this, MealsActivity.class);
+                startActivity(goToAllMeals);
             }
         });
 
@@ -102,15 +115,18 @@ public class RestaurantsActivity extends ActionBarActivity {
                         restaurantId = Integer.parseInt(postObj.getString("restaurant_id"));
                         int id = postObj.getInt("id");
                         String name = postObj.getString("name");
+                        String restaurantName = postObj.getString("restaurant");
                         double price = postObj.getDouble("price");
                         String imgLocation = postObj.getString("image");
+                        String city = postObj.getString("restaurantCity");
 
-                        Meal currentMeal = new Meal(restaurantId, id, name, price, imgLocation);
+                          Meal currentMeal= new Meal(restaurantId,id, name, restaurantName,city,price,imgLocation);
 
                         if (true == restaurantMealList.checkMealList(currentMeal)) {
                             restaurantMealList.mFeed.add(currentMeal);
                         }
                         Log.e("ArraySize", String.valueOf(restaurantMealList.mFeed.size()));
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

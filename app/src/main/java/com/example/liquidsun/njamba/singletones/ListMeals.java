@@ -76,6 +76,7 @@ public class ListMeals {
             @Override
             public void onResponse(Response response) throws IOException {
 
+
                 try {
 
                     JSONArray array = new JSONArray(response.body().string());
@@ -86,8 +87,11 @@ public class ListMeals {
                         String name = postObj.getString("name");
                         double price = postObj.getDouble("price");
                         String imgLocation = postObj.getString("image");
+                        String restaurantName = postObj.getString("restaurant");
+                       String city = postObj.getString("restaurantCity")    ;
 
-                        Meal currentMeal = new Meal(restaurantId, id, name, price, imgLocation);
+
+                        Meal currentMeal = new Meal(restaurantId, id, name,restaurantName,city, price, imgLocation);
 
                         if (true == checkMealList(currentMeal)) {
                             mFeed.add(currentMeal);

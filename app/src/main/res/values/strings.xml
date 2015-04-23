@@ -6,8 +6,9 @@
     <string name="hint_password">Your password</string>
     <string name="hint_filter">Search</string>
 
-    <!-- button -->
+    <!-- buttons -->
     <string name="button_login">Login</string>
+    <string name="button_go_to_all_meals">Go To All Meals</string>
 
 
     <!-- keys -->
