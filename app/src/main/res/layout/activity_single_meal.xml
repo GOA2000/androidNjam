@@ -9,9 +9,13 @@
                 android:orientation="vertical"
                 tools:context="com.example.liquidsun.njamba.SingleMealActivity">
 
+    <Button
+        android:id="@+id/button_add_to_cart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Button"/>
 
     <ImageView
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -23,8 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="50dp"
-        android:id="@+id/meal_profile_title"
-        />
+        android:id="@+id/meal_profile_title"/>
+
     <TextView
         android:text=""
         android:layout_width="fill_parent"
