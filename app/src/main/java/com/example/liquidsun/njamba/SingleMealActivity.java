@@ -84,32 +84,6 @@ public class SingleMealActivity extends ActionBarActivity {
     }
 
 
-    /*private Callback callBack() {
-        return new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-                Log.e("Neldin Cart", e.getMessage());
-            }
-
-            @Override
-            public void onResponse(Response response) throws IOException {
-                String res = response.body().string();
-                try {
-                    JSONArray array = new JSONArray(res);
-                    for (int i = 0; i < array.length(); i++) {
-                        JSONObject obj = array.getJSONObject(i);
-                        int id = obj.getInt("id");
-                        Log.e("Neldin Cart", "ID carta: " + id);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        };
-    }*/
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

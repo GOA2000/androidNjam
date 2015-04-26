@@ -46,12 +46,12 @@ public class RestaurantsActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-           super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_list);
 
-        ListRestaurants restaurantFeed= ListRestaurants.getInstance();
+        ListRestaurants restaurantFeed = ListRestaurants.getInstance();
         restaurantMealList = ListMeals.getInstance();
-       restaurants =restaurantFeed.getFeed();
+        restaurants =restaurantFeed.getFeed();
 
 
         mRestaurantList = (ListView)findViewById(R.id.list_view_restaurant);
@@ -61,7 +61,7 @@ public class RestaurantsActivity extends ActionBarActivity {
         mRestaurantList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Restaurant clicked = restaurants.get(position);
+              Restaurant clicked = restaurants.get(position);
               int restaurantId = clicked.getId();
                 String url = getString(R.string.service_meals_for_restaurant);
                 JSONObject clickedRestaurant = new JSONObject();
@@ -90,6 +90,15 @@ public class RestaurantsActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Intent goToAllMeals = new Intent(RestaurantsActivity.this, MealsActivity.class);
                 startActivity(goToAllMeals);
+            }
+        });
+
+        Button buttonGoToNewMain = (Button) findViewById(R.id.button_go_to_new_main);
+        buttonGoToNewMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(RestaurantsActivity.this, NewMainActivity.class);
+                startActivity(i);
             }
         });
 

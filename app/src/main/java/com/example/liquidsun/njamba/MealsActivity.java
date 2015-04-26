@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -140,6 +141,16 @@ public class MealsActivity extends ActionBarActivity {
                 convertView = MealsActivity.this.getLayoutInflater()
                         .inflate(R.layout.custom_meals_list_row, null);
             }
+
+            Button newButton = (Button) findViewById(R.id.button_new_meal_layout);
+            newButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(MealsActivity.this, NewMealActivity.class);
+                    startActivity(i);
+
+                }
+            });
 
 
             TextView mealName = (TextView) convertView.findViewById(R.id.text_view_meal_name);
