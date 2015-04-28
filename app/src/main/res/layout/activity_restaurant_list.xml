@@ -11,6 +11,18 @@
         android:layout_height="wrap_content"
         android:text="@string/button_go_to_all_meals"/>
 
+    <Button
+        android:id="@+id/button_go_to_new_main"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Go to new Main"/>
+
+    <Button
+        android:id="@+id/button_go_to_cart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Go To Cart"/>
+
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

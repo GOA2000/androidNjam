@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -141,6 +142,16 @@ public class MealsActivity extends ActionBarActivity {
                         .inflate(R.layout.custom_meals_list_row, null);
             }
 
+            Button newButton = (Button) findViewById(R.id.button_new_meal_layout);
+            newButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(MealsActivity.this, NewMealActivity.class);
+                    startActivity(i);
+
+                }
+            });
+
 
             TextView mealName = (TextView) convertView.findViewById(R.id.text_view_meal_name);
             mealName.setText(current.getName());
@@ -155,7 +166,7 @@ public class MealsActivity extends ActionBarActivity {
 
             mealPrice.setText("" + current.getPrice());
             ImageView mealImage = (ImageView) convertView.findViewById(R.id.image_view_meal);
-            String img =getString(R.string.image_path) + current.getImgLocation();
+            String img = getString(R.string.image_path) + current.getImgLocation();
             img = img.replaceAll("\\\\","/");
             Log.d("IMGTAG Image", img);
             Picasso.with(getContext()).load(img).into(mealImage);
@@ -188,6 +199,7 @@ public class MealsActivity extends ActionBarActivity {
 
 
                         Intent goToMeal = new Intent(MealsActivity.this,SingleMealActivity.class);
+                        goToMeal.putExtra("id", id);
                         goToMeal.putExtra("name", name);
                         goToMeal.putExtra("price", price);
                         goToMeal.putExtra("imgPath", imgLocation);
