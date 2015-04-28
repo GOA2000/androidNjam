@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class MealsFragment extends Fragment {
 
     private ListView mMealsList;
     private MealAdapter mMealAdapter;
+    private EditText mMealFilter;
     private ArrayList<Meal> mMeals = new ArrayList<Meal>();
 
 
@@ -68,7 +70,7 @@ public class MealsFragment extends Fragment {
                 JSONObject clickedMeal = new JSONObject();
                 try {
                     clickedMeal.put("id", Integer.toString(mealId));
-                    Log.d("TAG", "JSON ID " +id);
+                    Log.d("TAG", "JSON ID " + id);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -77,6 +79,8 @@ public class MealsFragment extends Fragment {
                 ServiceRequest.post(url, json, getMealsImg());
             }
         });
+
+        mMealFilter = (EditText) v.findViewById(R.id.edit_text_filter);
 
         return v;
     }
