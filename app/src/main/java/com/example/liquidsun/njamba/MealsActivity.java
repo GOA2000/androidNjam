@@ -166,7 +166,7 @@ public class MealsActivity extends ActionBarActivity {
 
             mealPrice.setText("" + current.getPrice());
             ImageView mealImage = (ImageView) convertView.findViewById(R.id.image_view_meal);
-            String img =getString(R.string.image_path) + current.getImgLocation();
+            String img = getString(R.string.image_path) + current.getImgLocation();
             img = img.replaceAll("\\\\","/");
             Log.d("IMGTAG Image", img);
             Picasso.with(getContext()).load(img).into(mealImage);
