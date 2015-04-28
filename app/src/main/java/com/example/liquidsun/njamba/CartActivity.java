@@ -36,7 +36,7 @@ public class CartActivity extends ActionBarActivity {
         //mArrayListCartItems = new ArrayList<CartItem>();
         mArrayListCartItems = listCartItems.getListCartItems();
 
-        ListView mListViewCartItems = (ListView) findViewById(R.id.list_view_cart_items);
+        mListViewCartItems = (ListView) findViewById(R.id.list_view_cart_items);
         mAdapter = new CartItemsAdapter(mArrayListCartItems);
         mListViewCartItems.setAdapter(mAdapter);
 
