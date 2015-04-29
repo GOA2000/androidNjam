@@ -45,6 +45,7 @@ public class CartFragment extends Fragment {
         mListViewCartItems = (ListView) v.findViewById(R.id.list_view_cart_items);
         mCartItemsAdapter = new CartItemsAdapter(mArrayListCartItems);
         mListViewCartItems.setAdapter(mCartItemsAdapter);
+        mCartItemsAdapter.notifyDataSetChanged();
 
         Button checkout = (Button) v.findViewById(R.id.button_checkout);
         checkout.setOnClickListener(new View.OnClickListener() {
