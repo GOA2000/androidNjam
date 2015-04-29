@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -20,7 +21,14 @@ public class NewMainActivity extends ActionBarActivity {
         MainAdapter adapter = new MainAdapter(getSupportFragmentManager());
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
-        pager.setCurrentItem(1);
+
+        int toCart = getIntent().getIntExtra("toCart", 0);
+        Log.e("INTENT TAG", "" + toCart);
+        if (toCart == 1) {
+            pager.setCurrentItem(2);
+        } else {
+            pager.setCurrentItem(1);
+        }
     }
 
 
