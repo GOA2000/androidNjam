@@ -13,8 +13,10 @@ import android.view.MenuItem;
 
 public class NewMealActivity extends ActionBarActivity {
 
+    private int mealId;
     private String mealName;
     private double mealPrice;
+    private int restaurantId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +29,10 @@ public class NewMealActivity extends ActionBarActivity {
 
         /////////
         Intent i = getIntent();
+        mealId = i.getIntExtra("id", -1);
         mealName = i.getStringExtra("name");
         mealPrice = i.getDoubleExtra("price", 0);
+        restaurantId = i.getIntExtra("restaurant_id", -1);
     }
 
 
@@ -47,6 +51,7 @@ public class NewMealActivity extends ActionBarActivity {
                 show = new MainFragment();
                 Bundle arguments = new Bundle();
                 arguments.putInt(MainFragment.MAIN_FRAGMENT_KEY, position);
+                arguments.putInt("mealId", mealId);
                 arguments.putString("mealName", mealName);
                 arguments.putDouble("mealPrice", mealPrice);
 
@@ -66,7 +71,7 @@ public class NewMealActivity extends ActionBarActivity {
             } else if (position == 3) {
                 show = new AboutRestaurantFragment();
                 Bundle arguments = new Bundle();
-                arguments.putInt(AboutRestaurantFragment.ABOUT_RESTAURANT_FRAGMENT_KEY, position);
+                arguments.putInt("restaurantId", restaurantId);
 
                 show.setArguments(arguments);
             } else {
