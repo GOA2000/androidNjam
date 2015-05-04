@@ -108,7 +108,7 @@ public class MealsFragment extends Fragment {
                         imgLocation = imgLocation.replaceAll("\\\\", "/");
 
 
-                        Intent goToMeal = new Intent(getActivity(),SingleMealActivity.class);
+                        Intent goToMeal = new Intent(getActivity(), NewMealActivity.class);
                         goToMeal.putExtra("id", id);
                         goToMeal.putExtra("name", name);
                         goToMeal.putExtra("price", price);

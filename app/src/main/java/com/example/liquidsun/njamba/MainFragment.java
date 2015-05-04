@@ -28,9 +28,14 @@ public class MainFragment extends Fragment {
 
         Bundle arguments = getArguments();
         int position = arguments.getInt(MAIN_FRAGMENT_KEY);
+        String name = arguments.getString("mealName");
+        double mealPrice = arguments.getDouble("mealPrice");
 
-        //TextView showText = (TextView) v.findViewById(R.id.text_view_show);
-        //showText.setText("" + position);
+        TextView mealName = (TextView) v.findViewById(R.id.text_view_meal_name);
+        mealName.setText(name);
+
+        TextView price = (TextView) v.findViewById(R.id.text_view_meal_price);
+        price.setText("" + mealPrice);
 
         return v;
     }

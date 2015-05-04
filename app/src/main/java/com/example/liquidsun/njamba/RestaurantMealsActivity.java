@@ -43,8 +43,11 @@ public class RestaurantMealsActivity extends ActionBarActivity {
         setContentView(R.layout.activity_restaurant_meals);
         Intent it = getIntent();
         int id = it.getIntExtra("restaurant_id", 0);
+        String restaurantName = it.getStringExtra("restaurant_name");
         Log.e("RestaurantID",String.valueOf(id));
         ListMeals mealFeed = ListMeals.getInstance();
+
+        getSupportActionBar().setTitle(restaurantName);
 
         meals = mealFeed.mealsByRestaurant(id);
 

@@ -39,6 +39,8 @@ public class RestaurantsFragment extends Fragment {
 
     static ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
 
+    private String restaurantName;
+
 
     public RestaurantsFragment() {
         // Required empty public constructor
@@ -132,7 +134,7 @@ public class RestaurantsFragment extends Fragment {
                         restaurantId = Integer.parseInt(postObj.getString("restaurant_id"));
                         int id = postObj.getInt("id");
                         String name = postObj.getString("name");
-                        String restaurantName = postObj.getString("restaurant");
+                        restaurantName = postObj.getString("restaurant");
                         double price = postObj.getDouble("price");
                         String imgLocation = postObj.getString("image");
                         String city = postObj.getString("restaurantCity");
@@ -150,6 +152,7 @@ public class RestaurantsFragment extends Fragment {
                 }
                 Intent toMeals = new Intent(getActivity(), RestaurantMealsActivity.class);
                 toMeals.putExtra("restaurant_id",restaurantId);
+                toMeals.putExtra("restaurant_name", restaurantName);
                 startActivity(toMeals);
             }
         };

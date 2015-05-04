@@ -1,5 +1,6 @@
 package com.example.liquidsun.njamba;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -12,6 +13,9 @@ import android.view.MenuItem;
 
 public class NewMealActivity extends ActionBarActivity {
 
+    private String mealName;
+    private double mealPrice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +24,11 @@ public class NewMealActivity extends ActionBarActivity {
         MealAdapter adapter = new MealAdapter(getSupportFragmentManager());
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
+
+        /////////
+        Intent i = getIntent();
+        mealName = i.getStringExtra("name");
+        mealPrice = i.getDoubleExtra("price", 0);
     }
 
 
@@ -38,6 +47,8 @@ public class NewMealActivity extends ActionBarActivity {
                 show = new MainFragment();
                 Bundle arguments = new Bundle();
                 arguments.putInt(MainFragment.MAIN_FRAGMENT_KEY, position);
+                arguments.putString("mealName", mealName);
+                arguments.putDouble("mealPrice", mealPrice);
 
                 show.setArguments(arguments);
             } else if (position == 1) {

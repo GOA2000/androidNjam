@@ -23,6 +23,7 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/text_view_meal_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Meal Name"
@@ -55,6 +56,7 @@
                 android:src="@drawable/money"/>
 
             <TextView
+                android:id="@+id/text_view_meal_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5.0"
