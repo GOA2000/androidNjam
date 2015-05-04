@@ -69,7 +69,7 @@ public class SingleMealActivity extends ActionBarActivity {
                     String jsonIdString = jsonId.toString();
                     ListCartItems.getInstance().getCartItems(url, jsonIdString);
 
-                    Intent i = new Intent(SingleMealActivity.this, CartActivity.class);
+                    Intent i = new Intent(SingleMealActivity.this, com.example.liquidsun.njamba.v3.MainActivity.class);
                     i.putExtra("toCart", 1);
                     startActivity(i);
                 }

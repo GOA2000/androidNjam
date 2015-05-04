@@ -1,7 +1,10 @@
 package com.example.liquidsun.njamba.v3;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,7 +16,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.liquidsun.njamba.NewMainActivity;
 import com.example.liquidsun.njamba.R;
+import com.example.liquidsun.njamba.RestaurantsFragment;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -23,6 +28,10 @@ public class MainActivity extends ActionBarActivity {
     private ArrayAdapter<String> mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
+
+    private final String fragments[] = { "com.example.liquidsun.njamba.MealsFragment",
+                                            "com.example.liquidsun.njamba.RestaurantsFragment",
+                                            "com.example.liquidsun.njamba.CartFragment" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +47,12 @@ public class MainActivity extends ActionBarActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+
+        //v3
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frame_container, Fragment.instantiate(MainActivity.this, "com.example.liquidsun.njamba.MealsFragment"));
+        ft.commit();
     }
 
     private void addDrawerItems() {
@@ -47,8 +62,20 @@ public class MainActivity extends ActionBarActivity {
 
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                //Toast.makeText(MainActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+                //Intent i = new Intent(MainActivity.this, NewMainActivity.class);
+                //startActivity(i);
+                mDrawerLayout.setDrawerListener( new DrawerLayout.SimpleDrawerListener(){
+                    @Override
+                    public void onDrawerClosed(View drawerView){
+                        super.onDrawerClosed(drawerView);
+                        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+                        tx.replace(R.id.frame_container, Fragment.instantiate(MainActivity.this, fragments[position]));
+                        tx.commit();
+                    }
+                });
+                mDrawerLayout.closeDrawer(mDrawerList);
             }
         });
     }
