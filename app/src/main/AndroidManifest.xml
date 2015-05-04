@@ -61,6 +61,10 @@
             android:name=".NewMainActivity"
             android:label="@string/title_activity_new_main" >
         </activity>
+        <activity
+            android:name=".v3.MainActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
     </application>
 
 </manifest>
