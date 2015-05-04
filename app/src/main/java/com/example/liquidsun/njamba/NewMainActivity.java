@@ -1,5 +1,6 @@
 package com.example.liquidsun.njamba;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -95,7 +96,18 @@ public class NewMainActivity extends ActionBarActivity {
             return true;
         }
 
+        if (id == R.id.action_bar_cart) {
+            goToCart();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void goToCart() {
+        Intent i = new Intent(NewMainActivity.this, CartActivity.class);
+        startActivity(i);
     }
 
 }
