@@ -3,6 +3,8 @@ package com.example.liquidsun.njamba;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -70,11 +72,14 @@ public class MainFragment extends Fragment {
                         jsonId.put("id", Integer.toString(mealId));
                         jsonId.put("user_id", Integer.toString(userData.getId()));
                         Log.e("id jela za cart", " " + mealId);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     String jsonIdString = jsonId.toString();
                     ListCartItems.getInstance().getCartItems(url, jsonIdString);
+
+                    makeToast("Added " + mealName + " to cart.");
 
                     Intent i = new Intent(getActivity(), com.example.liquidsun.njamba.v3.MainActivity.class);
                     i.putExtra("toCart", 1);
@@ -94,6 +99,21 @@ public class MainFragment extends Fragment {
         }
 
         return v;
+    }
+
+
+    private void makeToast(final String message){
+
+        new Handler(Looper.getMainLooper())
+                .post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(),
+                                message,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+
     }
 
 }
