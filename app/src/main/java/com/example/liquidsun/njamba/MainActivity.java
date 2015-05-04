@@ -141,7 +141,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void goToMeal(){
-        Intent meals = new Intent(this, MealsActivity.class);
+        Intent meals = new Intent(this, com.example.liquidsun.njamba.v3.MainActivity.class);
         startActivity(meals);
     }
 

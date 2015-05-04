@@ -23,6 +23,7 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/text_view_meal_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Meal Name"
@@ -37,9 +38,10 @@
             android:gravity="center">
 
             <RatingBar
+                android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ratingBar2"/>
+                android:clickable="false"/>
 
         </LinearLayout>
 
@@ -55,6 +57,7 @@
                 android:src="@drawable/money"/>
 
             <TextView
+                android:id="@+id/text_view_meal_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5.0"
@@ -77,6 +80,7 @@
             android:gravity="bottom">
 
             <Button
+                android:id="@+id/button_add_to_cart"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Add to Cart"

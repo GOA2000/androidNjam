@@ -40,10 +40,11 @@ public class MainActivity extends ActionBarActivity {
 
         mDrawerList = (ListView)findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        mActivityTitle = getTitle().toString();
 
         addDrawerItems();
         setupDrawer();
+
+        getSupportActionBar().setTitle("Meals");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -56,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void addDrawerItems() {
-        String[] drawerMenuItems = { "Meals", "Restaurants", "Cart" };
+        final String[] drawerMenuItems = { "Meals", "Restaurants", "Cart" };
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, drawerMenuItems);
         mDrawerList.setAdapter(mAdapter);
 
@@ -66,16 +67,13 @@ public class MainActivity extends ActionBarActivity {
                 //Toast.makeText(MainActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
                 //Intent i = new Intent(MainActivity.this, NewMainActivity.class);
                 //startActivity(i);
-                mDrawerLayout.setDrawerListener( new DrawerLayout.SimpleDrawerListener(){
-                    @Override
-                    public void onDrawerClosed(View drawerView){
-                        super.onDrawerClosed(drawerView);
-                        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-                        tx.replace(R.id.frame_container, Fragment.instantiate(MainActivity.this, fragments[position]));
-                        tx.commit();
-                    }
-                });
-                mDrawerLayout.closeDrawer(mDrawerList);
+                mActivityTitle = drawerMenuItems[position];
+                getSupportActionBar().setTitle(mActivityTitle);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+                tx.replace(R.id.frame_container, Fragment.instantiate(MainActivity.this, fragments[position]));
+                tx.commit();
+                mDrawerLayout.closeDrawers();
             }
         });
     }
@@ -86,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Navigation!");
+                //getSupportActionBar().setTitle("Menu");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
