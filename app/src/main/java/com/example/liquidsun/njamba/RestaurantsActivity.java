@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.liquidsun.njamba.service.ServiceRequest;
 import com.example.liquidsun.njamba.singletones.ListMeals;
 import com.example.liquidsun.njamba.singletones.ListRestaurants;
+import com.example.liquidsun.njamba.v3.*;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -98,6 +99,15 @@ public class RestaurantsActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(RestaurantsActivity.this, NewMainActivity.class);
+                startActivity(i);
+            }
+        });
+
+        Button buttonGoToV3 = (Button) findViewById(R.id.button_go_to_v3);
+        buttonGoToV3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(RestaurantsActivity.this, com.example.liquidsun.njamba.v3.MainActivity.class);
                 startActivity(i);
             }
         });
