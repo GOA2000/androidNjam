@@ -88,6 +88,7 @@ public class MainFragment extends Fragment {
             });
         } else {
             addToCart.setText("Login to Add to Cart");
+            //added line because of git
             addToCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
