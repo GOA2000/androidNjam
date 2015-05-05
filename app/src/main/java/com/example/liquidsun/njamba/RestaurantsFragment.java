@@ -131,7 +131,8 @@ public class RestaurantsFragment extends Fragment {
                     JSONArray array = new JSONArray(response.body().string());
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject postObj = array.getJSONObject(i);
-                        restaurantId = Integer.parseInt(postObj.getString("restaurant_id"));
+                        restaurantId = postObj.getInt("restaurant_id");
+                        Log.e("RESTAURANTS FRAGMENT", "Id iz Jsona: " + restaurantId);
                         int id = postObj.getInt("id");
                         String name = postObj.getString("name");
                         restaurantName = postObj.getString("restaurant");

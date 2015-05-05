@@ -104,15 +104,19 @@ public class MealsFragment extends Fragment {
                         double price = meal.getDouble("price");
                         String imgLocation;
 
+                        int restaurantId = meal.getInt("restaurant_id");
+
                         imgLocation = getString(R.string.image_path) + meal.getString("image");
                         imgLocation = imgLocation.replaceAll("\\\\", "/");
 
 
                         Intent goToMeal = new Intent(getActivity(), NewMealActivity.class);
                         goToMeal.putExtra("id", id);
+                        goToMeal.putExtra("restaurantId", restaurantId);
                         goToMeal.putExtra("name", name);
                         goToMeal.putExtra("price", price);
                         goToMeal.putExtra("imgPath", imgLocation);
+                        Log.e("MEALSFRAGMENT", imgLocation);
                         startActivity(goToMeal);
                     }
                 } catch (JSONException e) {

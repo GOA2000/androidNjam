@@ -5,8 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,11 +19,16 @@ public class NewMealActivity extends ActionBarActivity {
     private String mealName;
     private double mealPrice;
     private int restaurantId;
+    private String imgPath;
+    private String restaurantName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_meal);
+
+        ActionBar bar = getSupportActionBar();
+        bar.hide();
 
         MealAdapter adapter = new MealAdapter(getSupportFragmentManager());
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
@@ -32,7 +39,10 @@ public class NewMealActivity extends ActionBarActivity {
         mealId = i.getIntExtra("id", -1);
         mealName = i.getStringExtra("name");
         mealPrice = i.getDoubleExtra("price", 0);
-        restaurantId = i.getIntExtra("restaurant_id", -1);
+        restaurantId = i.getIntExtra("restaurantId", -1);
+        imgPath = i.getStringExtra("imgPath");
+        Log.e("NEWMEALFRAGMENT", imgPath);
+        restaurantName = i.getStringExtra("restaurantName");
     }
 
 
@@ -65,13 +75,14 @@ public class NewMealActivity extends ActionBarActivity {
             } else if (position == 2) {
                 show = new ImagesFragment();
                 Bundle arguments = new Bundle();
-                arguments.putInt(ImagesFragment.IMAGES_FRAGMENT_KEY, position);
+                arguments.putString("imgPath", imgPath);
 
                 show.setArguments(arguments);
             } else if (position == 3) {
                 show = new AboutRestaurantFragment();
                 Bundle arguments = new Bundle();
                 arguments.putInt("restaurantId", restaurantId);
+                arguments.putString("restaurantName", restaurantName);
 
                 show.setArguments(arguments);
             } else {

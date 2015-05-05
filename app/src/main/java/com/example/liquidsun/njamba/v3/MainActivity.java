@@ -2,10 +2,13 @@ package com.example.liquidsun.njamba.v3;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
@@ -43,6 +46,9 @@ public class MainActivity extends ActionBarActivity {
 
         addDrawerItems();
         setupDrawer();
+
+        ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#33b5e5")));
 
         getSupportActionBar().setTitle("Meals");
 

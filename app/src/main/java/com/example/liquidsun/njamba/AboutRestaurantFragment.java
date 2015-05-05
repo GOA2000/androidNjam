@@ -32,9 +32,6 @@ public class AboutRestaurantFragment extends Fragment {
     private String restaurantName;
     private ListMeals restaurantMealList;
 
-
-    public static final String ABOUT_RESTAURANT_FRAGMENT_KEY = "ba.bitcamp.neldin.about_restaurant_fragment_key";
-
     public AboutRestaurantFragment() {
         // Required empty public constructor
     }
@@ -47,6 +44,11 @@ public class AboutRestaurantFragment extends Fragment {
 
         Bundle arguments = getArguments();
         final int restaurantId = arguments.getInt("restaurantId");
+        Log.e("ABOUT RESTAURANT FRAGMENT", "Restaurant ID from arguments: " + restaurantId);
+
+        restaurantName = arguments.getString("restaurantName");
+
+        restaurantMealList = ListMeals.getInstance();
 
         Button goToRestaurant = (Button) v.findViewById(R.id.button_go_to_restaurant);
         goToRestaurant.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +87,7 @@ public class AboutRestaurantFragment extends Fragment {
                     JSONArray array = new JSONArray(response.body().string());
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject postObj = array.getJSONObject(i);
-                        restaurantId = Integer.parseInt(postObj.getString("restaurant_id"));
+                        restaurantId = postObj.getInt("restaurant_id");
                         int id = postObj.getInt("id");
                         String name = postObj.getString("name");
                         restaurantName = postObj.getString("restaurant");
