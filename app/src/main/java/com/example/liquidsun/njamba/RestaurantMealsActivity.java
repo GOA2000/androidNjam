@@ -2,6 +2,9 @@ package com.example.liquidsun.njamba;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,7 +50,9 @@ public class RestaurantMealsActivity extends ActionBarActivity {
         Log.e("RestaurantID",String.valueOf(id));
         ListMeals mealFeed = ListMeals.getInstance();
 
-        getSupportActionBar().setTitle(restaurantName);
+        ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#33b5e5")));
+        bar.setTitle(restaurantName);
 
         meals = mealFeed.mealsByRestaurant(id);
 
