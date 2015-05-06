@@ -23,6 +23,7 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/text_view_restaurant_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -63,6 +64,7 @@
                     android:src="@drawable/working_hours"/>
 
                 <TextView
+                    android:id="@+id/text_view_restaurant_working_hours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="07 - 22"
@@ -113,6 +115,7 @@
                 android:layout_gravity="center">
 
                 <TextView
+                    android:id="@+id/text_view_restaurant_street"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Himze Mekića 23"
@@ -127,6 +130,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:id="@+id/text_view_restaurant_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sarajevo"
