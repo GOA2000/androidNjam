@@ -23,12 +23,6 @@
         android:layout_height="wrap_content"
         android:text="v3"/>
 
-    <Button
-        android:id="@+id/button_go_to_cart"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Go To Cart"/>
-
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

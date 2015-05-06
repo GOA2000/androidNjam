@@ -97,17 +97,10 @@ public class NewMainActivity extends ActionBarActivity {
         }
 
         if (id == R.id.action_bar_cart) {
-            goToCart();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    private void goToCart() {
-        Intent i = new Intent(NewMainActivity.this, CartActivity.class);
-        startActivity(i);
     }
 
 }

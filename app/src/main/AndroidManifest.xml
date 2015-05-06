@@ -47,7 +47,7 @@
             android:label="@string/title_activity_restaurant_meals" >
         </activity>
         <activity
-            android:name=".CartActivity"
+            android:name=".v0.CartActivity"
             android:label="@string/title_activity_cart" />
         <activity
             android:name=".PaymentActivity"
