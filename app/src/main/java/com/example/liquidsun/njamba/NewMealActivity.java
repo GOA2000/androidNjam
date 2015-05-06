@@ -21,6 +21,10 @@ public class NewMealActivity extends ActionBarActivity {
     private int restaurantId;
     private String imgPath;
     private String restaurantName;
+    private String mealDescription;
+    private String restaurantWorkingHours;
+    private String restaurantCity;
+    private String restaurantStreet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +43,18 @@ public class NewMealActivity extends ActionBarActivity {
         mealId = i.getIntExtra("id", -1);
         mealName = i.getStringExtra("name");
         mealPrice = i.getDoubleExtra("price", 0);
+
         restaurantId = i.getIntExtra("restaurantId", -1);
+        restaurantName = i.getStringExtra("restaurantName");
+        restaurantWorkingHours = i.getStringExtra("restaurantWorkingHours");
+        restaurantCity = i.getStringExtra("restaurantCity");
+        restaurantStreet = i.getStringExtra("restaurantStreet");
+
+
         imgPath = i.getStringExtra("imgPath");
         Log.e("NEWMEALFRAGMENT", imgPath);
-        restaurantName = i.getStringExtra("restaurantName");
+
+        mealDescription = i.getStringExtra("mealDescription");
     }
 
 
@@ -69,7 +81,7 @@ public class NewMealActivity extends ActionBarActivity {
             } else if (position == 1) {
                 show = new DetailsFragment();
                 Bundle arguments = new Bundle();
-                arguments.putInt(DetailsFragment.DETAILS_FRAGMENT_KEY, position);
+                arguments.putString("mealDescription", mealDescription);
 
                 show.setArguments(arguments);
             } else if (position == 2) {
@@ -80,9 +92,13 @@ public class NewMealActivity extends ActionBarActivity {
                 show.setArguments(arguments);
             } else if (position == 3) {
                 show = new AboutRestaurantFragment();
+
                 Bundle arguments = new Bundle();
                 arguments.putInt("restaurantId", restaurantId);
                 arguments.putString("restaurantName", restaurantName);
+                arguments.putString("restaurantWorkingHours", restaurantWorkingHours);
+                arguments.putString("restaurantCity", restaurantCity);
+                arguments.putString("restaurantStreet", restaurantStreet);
 
                 show.setArguments(arguments);
             } else {

@@ -1,7 +1,9 @@
 package com.example.liquidsun.njamba;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -60,6 +62,8 @@ public class MainFragment extends Fragment {
 
         Button addToCart = (Button) v.findViewById(R.id.button_add_to_cart);
         final UserData userData = UserData.getInstance();
+        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString(getString(R.string.key_user_email), null);
 
         if (userData.isAuthenticated()) {
             addToCart.setText("Add to cart");

@@ -10,6 +10,7 @@ import android.os.Looper;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,9 +42,6 @@ public class MainActivity extends ActionBarActivity {
 
         ActionBar bar = getSupportActionBar();
         bar.hide();
-
-        LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
-        layout.setBackground(new ColorDrawable(Color.parseColor("#E0E0E0")));
 
         mSharedPreferences = getPreferences(Context.MODE_PRIVATE);
 
@@ -128,11 +126,14 @@ public class MainActivity extends ActionBarActivity {
                 getString(R.string.key_user_email),   //  CHANGE
                 userData.getEmail()
         );
+        Log.e("username", userData.getEmail());
 
         editor.putString(
                 getString(R.string.key_user_password),
                 userData.getPassword()
         );
+        Log.e("password", userData.getPassword());
+
         editor.commit();
     }
 

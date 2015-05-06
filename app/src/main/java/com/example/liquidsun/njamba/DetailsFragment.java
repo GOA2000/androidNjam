@@ -14,9 +14,6 @@ import android.widget.TextView;
  */
 public class DetailsFragment extends Fragment {
 
-
-    public static final String DETAILS_FRAGMENT_KEY = "ba.bitcamp.neldin.details_fragment_key";
-
     public DetailsFragment() {
         // Required empty public constructor
     }
@@ -28,10 +25,10 @@ public class DetailsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_details, container, false);
 
         Bundle arguments = getArguments();
-        int position = arguments.getInt(DETAILS_FRAGMENT_KEY);
+        String mealDescription = arguments.getString("mealDescription");
 
-        //TextView showText = (TextView) v.findViewById(R.id.text_view_show);
-        //showText.setText("" + position);
+        TextView textViewMealDescription = (TextView) v.findViewById(R.id.text_view_meal_description);
+        textViewMealDescription.setText(mealDescription);
 
         return v;
     }

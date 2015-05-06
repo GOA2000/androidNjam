@@ -44,9 +44,22 @@ public class AboutRestaurantFragment extends Fragment {
 
         Bundle arguments = getArguments();
         final int restaurantId = arguments.getInt("restaurantId");
-        Log.e("ABOUT RESTAURANT FRAGMENT", "Restaurant ID from arguments: " + restaurantId);
-
         restaurantName = arguments.getString("restaurantName");
+        String restaurantWorkingHours = arguments.getString("restaurantWorkingHours");
+        String restaurantCity = arguments.getString("restaurantCity");
+        String restaurantStreet = arguments.getString("restaurantStreet");
+
+        TextView textViewRestaurantName = (TextView) v.findViewById(R.id.text_view_restaurant_name);
+        textViewRestaurantName.setText(restaurantName);
+
+        TextView textViewRestaurantWorkingHours = (TextView) v.findViewById(R.id.text_view_restaurant_working_hours);
+        textViewRestaurantWorkingHours.setText(restaurantWorkingHours);
+
+        TextView textViewRestaurantCity = (TextView) v.findViewById(R.id.text_view_restaurant_city);
+        textViewRestaurantCity.setText(restaurantCity);
+
+        TextView textViewRestaurantStreet = (TextView) v.findViewById(R.id.text_view_restaurant_street);
+        textViewRestaurantStreet.setText(restaurantStreet);
 
         restaurantMealList = ListMeals.getInstance();
 

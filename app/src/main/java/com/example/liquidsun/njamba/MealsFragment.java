@@ -66,6 +66,7 @@ public class MealsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Meal clicked = mMeals.get(position);
                 int mealId = clicked.getId();
+                Log.e("Meals Fragment: ", "Meal ID: " + mealId);
                 String url = getString(R.string.service_single_meal);
                 JSONObject clickedMeal = new JSONObject();
                 try {
@@ -105,15 +106,29 @@ public class MealsFragment extends Fragment {
                         String imgLocation;
 
                         int restaurantId = meal.getInt("restaurant_id");
+                        String restaurantName = meal.getString("restaurantName");
+                        String restaurantWorkingHours = meal.getString("restaurantWorkingHours");
+                        String restaurantCity = meal.getString("restaurantCity");
+                        String restaurantStreet = meal.getString("restaurantStreet");
 
                         imgLocation = getString(R.string.image_path) + meal.getString("image");
                         imgLocation = imgLocation.replaceAll("\\\\", "/");
 
+                        String mealDescription = meal.getString("meal_description");
+                        Log.e("mealDescription", mealDescription);
+
 
                         Intent goToMeal = new Intent(getActivity(), NewMealActivity.class);
                         goToMeal.putExtra("id", id);
+
                         goToMeal.putExtra("restaurantId", restaurantId);
+                        goToMeal.putExtra("restaurantName", restaurantName);
+                        goToMeal.putExtra("restaurantWorkingHours", restaurantWorkingHours);
+                        goToMeal.putExtra("restaurantCity", restaurantCity);
+                        goToMeal.putExtra("restaurantStreet", restaurantStreet);
+
                         goToMeal.putExtra("name", name);
+                        goToMeal.putExtra("mealDescription", mealDescription);
                         goToMeal.putExtra("price", price);
                         goToMeal.putExtra("imgPath", imgLocation);
                         Log.e("MEALSFRAGMENT", imgLocation);
