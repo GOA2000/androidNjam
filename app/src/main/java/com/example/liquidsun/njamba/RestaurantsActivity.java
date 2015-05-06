@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,11 +20,9 @@ import android.widget.Toast;
 import com.example.liquidsun.njamba.service.ServiceRequest;
 import com.example.liquidsun.njamba.singletones.ListMeals;
 import com.example.liquidsun.njamba.singletones.ListRestaurants;
-import com.example.liquidsun.njamba.v3.*;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -108,15 +105,6 @@ public class RestaurantsActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(RestaurantsActivity.this, com.example.liquidsun.njamba.v3.MainActivity.class);
-                startActivity(i);
-            }
-        });
-
-        Button buttonGoToCart = (Button) findViewById(R.id.button_go_to_cart);
-        buttonGoToCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(RestaurantsActivity.this, CartActivity.class);
                 startActivity(i);
             }
         });
