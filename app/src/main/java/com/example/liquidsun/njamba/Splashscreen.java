@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 
 import com.example.liquidsun.njamba.service.ServiceRequest;
 import com.example.liquidsun.njamba.singletones.ListRestaurants;
+import com.example.liquidsun.njamba.v3.*;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -60,7 +61,7 @@ public class Splashscreen extends ActionBarActivity {
             @Override
             public void onResponse(Response response) throws IOException {
 
-                Intent intent = new Intent(Splashscreen.this, RestaurantsActivity.class);
+                Intent intent = new Intent(Splashscreen.this, com.example.liquidsun.njamba.v3.MainActivity.class);
 
                 startActivity(intent);
 
